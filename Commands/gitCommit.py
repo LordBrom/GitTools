@@ -12,12 +12,12 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 
 
 		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
-		self.dir = self.get_scoped_path('dir')
+		self.dir = self.get_scoped_path('repo')
 
 		print(self.path)
 		print(self.dir)
 
 		message = "test Message"
-		self.run_git_command(["git", "commit", "-m", message, self.path], self.dir)
+		self.run_git_command(["git", "commit", "-m", message, self.dir], self.dir)
 
 		print("Commit!! jk")

@@ -1,0 +1,3 @@
+[
+	{ "keys": ["ctrl+alt+b","ctrl+alt+b"], "command": "git_commit"          }
+]

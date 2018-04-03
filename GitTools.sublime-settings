@@ -1,0 +1,5 @@
+{
+	"commit_scope": "file", /* file|repo|dir */
+	"history": [],
+	"show_status_bar_info": 1,
+}

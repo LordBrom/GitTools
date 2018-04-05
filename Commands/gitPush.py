@@ -19,14 +19,14 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 
 	def new_branch(self, remoteBranch):
 		cmd = self.run_git_command(["git", "branch", "--set-upstream-to", "origin/"+remoteBranch], self.dir)
+		git_settings().set('remoteBranch', remoteBranch)
+		sublime.save_settings('GitTools.sublime-settings')
 		show_output_panel(cmd)
 		self.do_push(remoteBranch)
 
 
 	def do_push(self, remoteBranch):
 		print(remoteBranch)
-		git_settings().set('remoteBranch', remoteBranch)
-		sublime.save_settings('GitTools.sublime-settings')
 		cmd = self.run_git_command(["git", "push", "origin", "HEAD:" + remoteBranch], self.dir)
 		show_output_panel(cmd)
 		print('done pushing')

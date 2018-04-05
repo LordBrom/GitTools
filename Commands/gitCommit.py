@@ -5,9 +5,7 @@ from ..Core.Controller import *
 from ..Core.History import *
 
 class gitCommitCommand(sublime_plugin.TextCommand, gitController):
-	def run(self, edit, showHistory = False, doPush = True):
-
-		self.argDoPush = doPush
+	def run(self, edit, showHistory = False):
 
 		if showHistory:
 			self.messageList = gitHistory.get_history(includeNewLogOption = True)
@@ -65,6 +63,6 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		self.run_git_command(["git", "commit", "-m", message, self.dir], self.dir)
 		gitHistory.add_history(message)
 
-		if self.argDoPush:
+		if git_settings().get('auto_push_after_commit', True):
 			sublime.active_window().run_command("git_push")
 

@@ -8,4 +8,4 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		print('push')
 		# git.exe push --progress "origin" HomeCheckOut:NateHomeCheckout
 		self.dir = self.get_scoped_path('repo')
-		self.run_git_command(["git", "push", "origin", "newTestBranch"], self.dir)
+		self.run_git_command(["git", "push", "origin"], self.dir)

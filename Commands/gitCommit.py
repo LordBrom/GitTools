@@ -5,8 +5,9 @@ from ..Core.Controller import *
 from ..Core.History import *
 
 class gitCommitCommand(sublime_plugin.TextCommand, gitController):
-	def run(self, edit, showHistory = False, doPush = False):
+	def run(self, edit, showHistory = False, doPush = True):
 
+		self.argDoPush = doPush
 
 		if showHistory:
 			self.messageList = gitHistory.get_history(includeNewLogOption = True)
@@ -23,7 +24,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		if len(self.path) == 0:
 			return;
 
-		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'repo'))
+		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
 		self.dir = self.get_scoped_path('repo')
 
 		print(self.path)
@@ -63,4 +64,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 	def do_commit(self, message):
 		self.run_git_command(["git", "commit", "-m", message, self.dir], self.dir)
 		gitHistory.add_history(message)
+
+		if self.argDoPush:
+			sublime.active_window().run_command("git_push")
 

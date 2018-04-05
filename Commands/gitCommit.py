@@ -2,10 +2,16 @@ import sublime
 import sublime_plugin
 
 from ..Core.Controller import *
+from ..Core.History import *
 
 class gitCommitCommand(sublime_plugin.TextCommand, gitController):
-	def run(self, edit):
-		print("Commit!! jk")
+	def run(self, edit, showHistory = False, doPush = False):
+
+
+		if showHistory:
+			print(gitHistory.getHistory(includeNewLogOption = True))
+
+
 		self.path = self.get_git_dir()
 		if len(self.path) == 0:
 			return;
@@ -20,4 +26,3 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		message = "test Message"
 		self.run_git_command(["git", "commit", "-m", message, self.dir], self.dir)
 
-		print("Commit!! jk")

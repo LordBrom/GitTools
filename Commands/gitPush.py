@@ -14,10 +14,11 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		else:
 			self.do_push(branch)
 
-	def set_branch():
+	def set_branch(self):
 		sublime.active_window().show_input_panel("Remote Brach Name:", "", self.do_push, None, None)
 
 	def do_push(self, remoteBranch):
-		git_settings().set('history', history)
+		print(remoteBranch)
+		git_settings().set('remoteBranch', remoteBranch)
 		sublime.save_settings('GitTools.sublime-settings')
 		self.run_git_command(["git", "push", "origin", remoteBranch], self.dir)

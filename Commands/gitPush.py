@@ -21,5 +21,6 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		print(remoteBranch)
 		git_settings().set('remoteBranch', remoteBranch)
 		sublime.save_settings('GitTools.sublime-settings')
-		self.run_git_command(["git", "push", "origin", remoteBranch], self.dir)
+		cmd = self.run_git_command(["git", "push", "origin", remoteBranch], self.dir)
+		show_output_panel(cmd)
 		print('done pushing')

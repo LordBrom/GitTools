@@ -20,7 +20,6 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 	def new_branch(self, remoteBranch):
 		cmd = self.run_git_command(["git", "branch", "--set-upstream-to", "origin/"+remoteBranch], self.dir)
 		show_output_panel(cmd)
-		return
 		self.do_push(remoteBranch)
 
 

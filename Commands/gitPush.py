@@ -18,8 +18,9 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		sublime.active_window().show_input_panel("Remote Brach Name:", "", self.do_push, None, None)
 
 	def new_branch(self, remoteBranch):
-		cmd = self.run_git_command(["git", "branch", "--set-upstream", remoteBranch], self.dir)
+		cmd = self.run_git_command(["git", "branch", "--set-upstream-to", "origin/"+remoteBranch], self.dir)
 		show_output_panel(cmd)
+		return
 		self.do_push(remoteBranch)
 
 

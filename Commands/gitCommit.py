@@ -17,7 +17,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 			return;
 
 
-		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
+		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'repo'))
 		self.dir = self.get_scoped_path('repo')
 
 		print(self.path)

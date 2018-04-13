@@ -10,6 +10,8 @@ from .Core.Controller import *
 
 from .Commands.gitCommit import *
 from .Commands.gitPush import *
+from .Commands.gitDiff import *
+from .Commands.gitLog import *
 
 
 def plugin_loaded():

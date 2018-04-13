@@ -7,6 +7,13 @@ from ..Core.History import *
 class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 	def run(self, edit, showHistory = False):
 
+		self.path = self.get_git_dir()
+		if len(self.path) == 0:
+			return;
+
+		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
+		self.dir = self.get_scoped_path('repo')
+
 		if showHistory:
 			self.messageList = gitHistory.get_history(includeNewLogOption = True)
 			sublime.active_window().show_quick_panel(self.messageList, self.sel_message)
@@ -18,15 +25,6 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 				self.do_commit(message)
 
 
-		self.path = self.get_git_dir()
-		if len(self.path) == 0:
-			return;
-
-		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
-		self.dir = self.get_scoped_path('repo')
-
-		print(self.path)
-		print(self.dir)
 
 
 	def sel_message(self, index):

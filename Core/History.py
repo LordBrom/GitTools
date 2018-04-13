@@ -8,12 +8,15 @@ import datetime
 from ..Core.Controller import *
 
 class gitHistory():
-	def get_history(includeNewLogOption = False, getLast = False):
+	def get_history(includeNewLogOption = False, newLogText = 'New Log', getLast = False):
 		messageHistory = list(git_settings().get('history', []))
 		if includeNewLogOption:
-			messageHistory.insert(min(len(messageHistory), 1), 'New Log')
+			messageHistory.insert(min(len(messageHistory), 1), newLogText)
 		if getLast:
-			messageHistory = messageHistory[1]
+			if len(messageHistory) == 0:
+				messageHistory = ''
+			else:
+				messageHistory = messageHistory[0]
 		return messageHistory
 
 	def add_history(log):

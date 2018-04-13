@@ -81,11 +81,14 @@ class gitController():
 						stderr=subprocess.STDOUT,
 						startupinfo=startupinfo)
 
+			cmd = proc.communicate()
+
 		except ValueError:
 			print(ValueError)
 			sublime.status_message( "Git command failed." )
 			return ""
 
-		print(proc.communicate())
+
+		print(cmd)
 		print("Running Done")
-		return proc.communicate()[0].decode()
+		return cmd[0].decode()

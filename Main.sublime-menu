@@ -1,0 +1,47 @@
+[
+	{
+        "caption": "Preferences",
+        "id": "preferences",
+        "children":
+        [{
+        	"caption": "Package Settings",
+            "id": "package-settings",
+            "children":
+            [{
+            	"caption": "Git Tools",
+                "id": "git-tools-settings",
+                "children":
+                [{
+                    "caption": "-"
+                },{
+                    "caption": "Commit Scope",
+
+                    "children":
+                    [
+                        {
+                            "command": "git_set_scope", "args": {"scope": "repo"}, "caption": "Repository", "checkbox": "true"
+                        },{
+                            "command": "git_set_scope", "args": {"scope": "file"}, "caption": "File", "checkbox": "true"
+                        },{
+                            "command": "git_set_scope", "args": {"scope": "dir" }, "caption": "Directory", "checkbox": "true"
+                        }
+                    ]
+                },{
+                    "caption": "-"
+                },{
+                    "command": "open_file", "args": {"file": "${packages}/GitTools/GitTools.sublime-settings"},"caption": "Settings – Default"
+                },{
+                    "command": "open_file", "args": {"file": "${packages}/User/GitTools.sublime-settings"},"caption": "Settings – User"
+                },{
+                    "caption": "-"
+                },{
+                    "command": "open_file", "args": {"file": "${packages}/SVNTools/Default (Windows).sublime-keymap"},"caption": "Key Bindings – Default"
+                },{
+                    "command": "open_file", "args": {"file": "${packages}/User/Default (Windows).sublime-keymap"},"caption": "Key Bindings – User"
+                },{
+                    "caption": "-"
+                }]
+            }]
+        }]
+    }
+]

@@ -1,10 +1,12 @@
 [
 	{
         "caption": "Preferences",
+        "mnemonic": "n",
         "id": "preferences",
         "children":
         [{
         	"caption": "Package Settings",
+            "mnemonic": "P",
             "id": "package-settings",
             "children":
             [{
@@ -35,7 +37,7 @@
                 },{
                     "caption": "-"
                 },{
-                    "command": "open_file", "args": {"file": "${packages}/SVNTools/Default (Windows).sublime-keymap"},"caption": "Key Bindings – Default"
+                    "command": "open_file", "args": {"file": "${packages}/GitTools/Default (Windows).sublime-keymap"},"caption": "Key Bindings – Default"
                 },{
                     "command": "open_file", "args": {"file": "${packages}/User/Default (Windows).sublime-keymap"},"caption": "Key Bindings – User"
                 },{
@@ -43,5 +45,41 @@
                 }]
             }]
         }]
+    },
+    {
+        "id": "gittools",
+        "caption": "Git Tools",
+        "mnemonic": "V",
+        "children":
+        [
+            {
+                    "caption": "-"
+                },{
+                    "caption": "Commit Scope",
+
+                    "children":
+                    [
+                        {
+                            "command": "git_set_scope", "args": {"scope": "repo"}, "caption": "Repository", "checkbox": "true"
+                        },{
+                            "command": "git_set_scope", "args": {"scope": "file"}, "caption": "File", "checkbox": "true"
+                        },{
+                            "command": "git_set_scope", "args": {"scope": "dir" }, "caption": "Directory", "checkbox": "true"
+                        }
+                    ]
+                },{ "caption": "-" },
+            { "caption": "Commit to Git…",                 "command": "git_commit"          },
+            { "caption": "Commit to Git (Last Comment)…",  "command": "git_commit_last"     },
+            { "caption": "Commit to Git (Blank Comment)…", "command": "git_commit_blank"    },
+            { "caption": "Commit to Git (History)",        "command": "git_commit_history"  },
+            { "caption": "-"                                                                },
+            { "caption": "Show changes in file",           "command": "git_show_changes"    },
+            { "caption": "Discard changes in file",        "command": "git_discard_changes" },
+            { "caption": "Update repository",              "command": "git_update_repo"     },
+            { "caption": "Add file to repository",         "command": "git_add_file"        },
+            { "caption": "Get repository status",          "command": "git_repo_status"     },
+            { "caption": "Show Git log",                   "command": "git_show_log"        },
+            { "caption": "-", "id": "end" }
+        ]
     }
 ]

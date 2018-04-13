@@ -11,7 +11,7 @@ class gitSetScopeCommand(sublime_plugin.ApplicationCommand, gitController):
 
     def run(self, scope):
         git_settings().set('commit_scope', scope)
-        sublime.save_settings('Preferences.sublime-settings')
+        sublime.save_settings('GitTools.sublime-settings')
         sublime.status_message( "Commit scope set to " + scope );
 
     def is_checked(self, scope):

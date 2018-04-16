@@ -13,6 +13,7 @@ from .Commands.gitPush     import *
 from .Commands.gitDiff     import *
 from .Commands.gitLog      import *
 from .Commands.gitSetScope import *
+from .Commands.gitRemoteBranch import *
 
 
 def plugin_loaded():

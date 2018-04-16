@@ -8,25 +8,11 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		print('push')
 		# git.exe push --progress "origin" HomeCheckOut:NateHomeCheckout
 		self.dir = self.get_scoped_path('repo')
-		branch = git_settings().get('remoteBranch', '')
-		if len(branch) == 0:
-			self.set_branch()
-		else:
-			self.do_push(branch)
-
-	def set_branch(self):
-		sublime.active_window().show_input_panel("Remote Brach Name:", "", self.do_push, None, None)
-
-	def new_branch(self, remoteBranch):
-		cmd = self.run_git_command(["git", "branch", "--set-upstream-to", "origin/"+remoteBranch], self.dir)
-		git_settings().set('remoteBranch', remoteBranch)
-		sublime.save_settings('GitTools.sublime-settings')
+		# branchData = self.run_git_command(["git", "status", "-sb"], self.dir)
+		# branchData = branchData.replace("##", "")
+		# branchData = branchData.replace("...", ":").strip()
+		# branchData = branchData.replace("origin/", "").strip()
+		# print(branchData)
+		cmd = self.run_git_command(["git", "push", "origin"], self.dir)
 		show_output_panel(cmd)
-		self.do_push(remoteBranch)
 
-
-	def do_push(self, remoteBranch):
-		print(remoteBranch)
-		cmd = self.run_git_command(["git", "push", "origin", "HEAD:" + remoteBranch], self.dir)
-		show_output_panel(cmd)
-		print('done pushing')

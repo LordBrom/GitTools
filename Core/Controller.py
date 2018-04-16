@@ -65,6 +65,7 @@ class gitController():
 		return self.gitDir
 
 	def run_git_command(self, params = [], dir = '', stripResult = True):
+		print("================================================")
 		print("Running command")
 		startupinfo = None
 		startupinfo = subprocess.STARTUPINFO()
@@ -91,4 +92,5 @@ class gitController():
 
 		print(cmd)
 		print("Running Done")
+		print("================================================")
 		return cmd[0].decode()

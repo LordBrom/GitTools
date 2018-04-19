@@ -65,6 +65,7 @@ class gitController():
 		return self.gitDir
 
 	def run_git_command(self, params = [], dir = '', stripResult = True):
+		print("================================================")
 		print("Running command")
 		startupinfo = None
 		startupinfo = subprocess.STARTUPINFO()
@@ -81,11 +82,15 @@ class gitController():
 						stderr=subprocess.STDOUT,
 						startupinfo=startupinfo)
 
+			cmd = proc.communicate()
+
 		except ValueError:
 			print(ValueError)
 			sublime.status_message( "Git command failed." )
 			return ""
 
-		print(proc.communicate())
+
+		print(cmd)
 		print("Running Done")
-		return proc.communicate()[0].decode()
+		print("================================================")
+		return cmd[0].decode()

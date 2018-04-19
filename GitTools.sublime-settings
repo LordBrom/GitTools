@@ -1,5 +1,6 @@
 {
 	"commit_scope": "file", /* file|repo|dir */
 	"history": [],
-	"show_status_bar_info": 1
+	"show_status_bar_info": 1,
+	"auto_push_after_commit": "True"
 }

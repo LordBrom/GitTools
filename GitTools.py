@@ -14,6 +14,8 @@ from .Commands.gitDiff     import *
 from .Commands.gitLog      import *
 from .Commands.gitSetScope import *
 from .Commands.gitRemoteBranch import *
+from .Commands.gitRepoStatus import *
+from .Commands.gitAdd import *
 
 
 def plugin_loaded():
@@ -25,3 +27,13 @@ class gitEventListener(sublime_plugin.EventListener, gitController):
 
     def on_post_save_async(self, view):
         git_set_status_items(self, view)
+
+
+class gitTestCommand(sublime_plugin.TextCommand, gitController):
+	def run(self, edit):
+		self.dir = self.get_scoped_path('repo')
+		grepString = 'test'
+		cmd = self.run_git_command(["git", "log", "--no-commit-id", "--grep", grepString, "--oneline", "--name-status"], self.dir)
+		# cmd = self.run_git_command(["git", "diff", "--no-color"], self.dir)
+		cmd = self.run_git_command(["git", "diff-files", "--name-status", "--ignore-submodules=all"], self.dir)
+		show_output_panel(cmd)

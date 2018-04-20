@@ -12,7 +12,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 			return;
 
 		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
-		self.dir = self.get_scoped_path('repo')
+		self.rootDir = self.get_scoped_path('repo')
 
 		if showHistory:
 			self.messageList = gitHistory.get_history(includeNewLogOption = True)
@@ -58,7 +58,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		self.do_commit(message)
 
 	def do_commit(self, message):
-		self.run_git_command(["git", "commit", "-m", message, self.dir], self.dir)
+		self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)
 		gitHistory.add_history(message)
 
 		if git_settings().get('auto_push_after_commit', True):

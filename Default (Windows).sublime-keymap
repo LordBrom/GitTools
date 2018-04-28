@@ -2,7 +2,9 @@
 	{ "keys": ["ctrl+alt+b","ctrl+alt+b"], "command": "git_commit"          },
 	{ "keys": ["ctrl+alt+b","ctrl+alt+h"], "command": "git_commit", "args":{"showHistory": "True"}          },
 	{ "keys": ["ctrl+alt+b","ctrl+alt+l"], "command": "git_log"   , "args":{"showHistory": "True"}       },
-	{ "keys": ["ctrl+alt+n"], "command": "git_test"         },
 	{ "keys": ["ctrl+alt+b","ctrl+alt+s"], "command": "git_repo_status"         },
-	{ "keys": ["ctrl+alt+b","ctrl+alt+a"], "command": "git_add"         }
+	{ "keys": ["ctrl+alt+b","ctrl+alt+a"], "command": "git_add"         },
+
+
+	{ "keys": ["ctrl+alt+n"], "command": "git_test"         }
 ]

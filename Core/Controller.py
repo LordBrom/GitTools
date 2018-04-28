@@ -94,3 +94,12 @@ class gitController():
 		print("Running Done")
 		print("================================================")
 		return cmd[0].decode()
+
+	def debug_print(self, message = "", first = False, last = False):
+		if first:
+			print("==========================")
+
+		print(message)
+
+		if last:
+			print("==========================")

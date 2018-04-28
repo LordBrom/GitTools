@@ -26,7 +26,6 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 
 
 
-
 	def sel_message(self, index):
 		try:
 			message = self.messageList[index]
@@ -41,21 +40,41 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		except ValueError:
 			pass
 
-
 	def new_message(self):
-		sublime.active_window().show_input_panel("Ticket number:", "", self.on_ticket, None, None)
 
-	def on_ticket(self, text):
+		self.message_placeholders = git_settings().get('message_placeholders', ['message'])
+		self.placeholders_filled = [];
+		self.index = 0;
+		self.debug_print(message = self.message_placeholders, first = True, last = True)
+
+		self.message_prompt();
+
+
+	def message_prompt( self ):
+		self.debug_print(message = self.index, first = True, last = True)
+		prompt = self.message_placeholders[self.index];
+		sublime.active_window().show_input_panel(prompt + ":", "", self.on_submit, None, None)
+
+	def on_submit(self, text):
 		try:
-			self.ticketNo = text
+			self.placeholders_filled.append(text)
 
-			sublime.active_window().show_input_panel("Comment:", "", self.on_comment, None, None)
+			self.index += 1
+			if self.index < len(self.message_placeholders):
+				self.message_prompt()
+
+			else:
+				finalMessage = git_settings().get('message_template', '[0]')
+
+				for index in range(len(self.message_placeholders)):
+					print(index)
+					finalMessage = finalMessage.replace("["+ str(index) +"]", self.placeholders_filled[index])
+
+				self.do_commit(finalMessage)
+
 		except ValueError:
 			pass
 
-	def on_comment(self, text):
-		message = "#" + self.ticketNo + ": " + text
-		self.do_commit(message)
 
 	def do_commit(self, message):
 		self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)

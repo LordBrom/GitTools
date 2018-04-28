@@ -4,6 +4,7 @@ import os.path
 import subprocess
 import functools
 import datetime
+import re
 
 from .Core.Controller      import *
 from .Core.SetStatusItems  import *
@@ -22,11 +23,11 @@ def plugin_loaded():
 	print("loaded")
 
 class gitEventListener(sublime_plugin.EventListener, gitController):
-    def on_activated_async(self, view):
-        git_set_status_items(self, view)
+	def on_activated_async(self, view):
+		git_set_status_items(self, view)
 
-    def on_post_save_async(self, view):
-        git_set_status_items(self, view)
+	def on_post_save_async(self, view):
+		git_set_status_items(self, view)
 
 
 class gitTestCommand(sublime_plugin.TextCommand, gitController):

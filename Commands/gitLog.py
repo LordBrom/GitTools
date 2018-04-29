@@ -37,6 +37,6 @@ class gitLogCommand(sublime_plugin.TextCommand, gitController):
 
 
 	def do_log(self, grepString):
-		print('running command')
-		cmd = self.run_git_command(["git", "log", "--grep", grepString, "--oneline"], self.dir)
+		cmd = self.run_git_command(["git", "log", "--grep", grepString, "--oneline", "--no-commit-id", "--name-only"], self.dir)
+		# cmd = self.run_git_command(["git", "diff-tree", "--name-only", "-r", "18d51f7"], self.dir)
 		show_output_panel(cmd)

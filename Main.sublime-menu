@@ -31,15 +31,19 @@
                 },{
                     "caption": "-"
                 },{
-                    "command": "open_file", "args": {"file": "${packages}/GitTools/GitTools.sublime-settings"},"caption": "Settings – Default"
+                    "command": "open_file", "args": {"file": "${packages}/GitTools/Preferences.sublime-settings"},"caption": "Settings – Default"
                 },{
-                    "command": "open_file", "args": {"file": "${packages}/User/GitTools.sublime-settings"},"caption": "Settings – User"
+                    "command": "open_file", "args": {"file": "${packages}/User/Preferences.sublime-settings"},"caption": "Settings – User"
                 },{
                     "caption": "-"
                 },{
                     "command": "open_file", "args": {"file": "${packages}/GitTools/Default (Windows).sublime-keymap"},"caption": "Key Bindings – Default"
                 },{
                     "command": "open_file", "args": {"file": "${packages}/User/Default (Windows).sublime-keymap"},"caption": "Key Bindings – User"
+                },{
+                    "caption": "-"
+                },{
+                    "command": "open_file", "args": {"file": "${packages}/User/GitMessageHistory.sublime-settings"},"caption": "View History"
                 },{
                     "caption": "-"
                 }]

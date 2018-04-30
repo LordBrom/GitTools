@@ -6,7 +6,12 @@ import functools
 import datetime
 
 def git_settings():
-	return sublime.load_settings( 'GitTools.sublime-settings' )
+	window = sublime.active_window()
+	view = window.active_view()
+	settings = view.settings()
+
+	return view.settings()
+	# return sublime.load_settings( 'GitTools.sublime-settings' )
 
 def show_output_panel(outputStr, reset = False):
 	window = sublime.active_window()
@@ -65,13 +70,13 @@ class gitController():
 		return self.gitDir
 
 	def run_git_command(self, params = [], dir = '', stripResult = True):
-		print("================================================")
-		print("Running command")
+
+		self.debug_print(message = "Running command", first = True, last = False)
 		startupinfo = None
 		startupinfo = subprocess.STARTUPINFO()
 		startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
-		print(params)
+		self.debug_print(message = params, first = False, last = False)
 
 		try:
 			proc = subprocess.Popen(
@@ -85,14 +90,13 @@ class gitController():
 			cmd = proc.communicate()
 
 		except ValueError:
-			print(ValueError)
+			self.debug_print(message = ValueError, first = False, last = False)
 			sublime.status_message( "Git command failed." )
 			return ""
 
 
-		print(cmd)
-		print("Running Done")
-		print("================================================")
+		self.debug_print(message = cmd, first = False, last = False)
+		self.debug_print(message = "Running Done", first = False, last = True)
 		return cmd[0].decode()
 
 	def debug_print(self, message = "", first = False, last = False):

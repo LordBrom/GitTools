@@ -11,7 +11,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		if len(self.path) == 0:
 			return;
 
-		self.path = self.get_scoped_path(git_settings().get('commit_scope', 'file'))
+		self.path = self.get_scoped_path(git_settings().get('Git.commit_scope', 'file'))
 		self.rootDir = self.get_scoped_path('repo')
 
 		if showHistory:
@@ -42,7 +42,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 
 	def new_message(self):
 
-		self.message_placeholders = git_settings().get('message_placeholders', ['message'])
+		self.message_placeholders = git_settings().get('Git.message_placeholders', ['message'])
 		self.placeholders_filled = [];
 		self.index = 0;
 		self.debug_print(message = self.message_placeholders, first = True, last = True)
@@ -64,7 +64,7 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 				self.message_prompt()
 
 			else:
-				finalMessage = git_settings().get('message_template', '[0]')
+				finalMessage = git_settings().get('Git.message_template', '[0]')
 
 				for index in range(len(self.message_placeholders)):
 					print(index)
@@ -80,6 +80,6 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)
 		gitHistory.add_history(message)
 
-		if git_settings().get('auto_push_after_commit', True):
-			sublime.active_window().run_command("git_push")
+		# if git_settings().get('Git.auto_push_after_commit', True):
+		# 	sublime.active_window().run_command("git_push")
 

@@ -80,7 +80,6 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 		self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)
 		gitHistory.add_history(message)
 
-		if git_settings().get('Git.auto_push_after_commit', True) == True:
-			print("pushed")
-		# 	sublime.active_window().run_command("git_push")
+		if git_settings().get('Git.auto_push_after_commit', True):
+			sublime.active_window().run_command("git_push")
 

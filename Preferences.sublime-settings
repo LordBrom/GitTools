@@ -2,6 +2,7 @@
 	"Git.commit_scope": "file", /* file|repo|dir */
 	"Git.show_status_bar_info": 1,
 	"Git.auto_push_after_commit": true,
+	"Git.commit_on_save": true,
 
 	"Git.message_placeholders": ["Ticket number", "Comment"],
 	"Git.message_template": "#[0]: [1]"

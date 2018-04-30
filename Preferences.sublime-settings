@@ -1,8 +1,7 @@
 {
 	"Git.commit_scope": "file", /* file|repo|dir */
-	"Git.history": [],
 	"Git.show_status_bar_info": 1,
-	"Git.auto_push_after_commit": "True",
+	"Git.auto_push_after_commit": true,
 
 	"Git.message_placeholders": ["message"],
 	"Git.message_template": "[0]"

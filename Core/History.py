@@ -7,9 +7,13 @@ import datetime
 
 from ..Core.Controller import *
 
+
+def git_history():
+	return sublime.load_settings( 'GitMessageHistory.sublime-settings' )
+
 class gitHistory():
 	def get_history(includeNewLogOption = False, newLogText = 'New Log', getLast = False):
-		messageHistory = list(git_settings().get('history', []))
+		messageHistory = list(git_history().get('history', []))
 		if includeNewLogOption:
 			messageHistory.insert(min(len(messageHistory), 1), newLogText)
 		if getLast:
@@ -20,7 +24,7 @@ class gitHistory():
 		return messageHistory
 
 	def add_history(log):
-		history = git_settings().get('history', [])
+		history = git_history().get('history', [])
 
 		for item in list(history):
 			if item == log:
@@ -29,8 +33,8 @@ class gitHistory():
 		history.reverse()
 		history.append(log)
 		history.reverse()
-		git_settings().set('history', history)
-		sublime.save_settings('GitTools.sublime-settings')
+		git_history().set('history', history)
+		sublime.save_settings('GitMessageHistory.sublime-settings')
 
 
 

@@ -32,9 +32,12 @@ class gitEventListener(sublime_plugin.EventListener, gitController):
 
 class gitTestCommand(sublime_plugin.TextCommand, gitController):
 	def run(self, edit):
-		self.dir = self.get_scoped_path('repo')
-		grepString = 'test'
-		cmd = self.run_git_command(["git", "log", "--no-commit-id", "--grep", grepString, "--oneline", "--name-status"], self.dir)
-		# cmd = self.run_git_command(["git", "diff", "--no-color"], self.dir)
-		cmd = self.run_git_command(["git", "diff-files", "--name-status", "--ignore-submodules=all"], self.dir)
-		show_output_panel(cmd)
+		self.debug_print(message = "test command",first = True, last = True)
+		# self.dir = self.get_scoped_path('repo')
+		# grepString = 'test'
+		# cmd = self.run_git_command(["git", "log", "--no-commit-id", "--grep", grepString, "--oneline", "--name-status"], self.dir)
+		# # cmd = self.run_git_command(["git", "diff", "--no-color"], self.dir)
+		# cmd = self.run_git_command(["git", "diff-files", "--name-status", "--ignore-submodules=all"], self.dir)
+		# show_output_panel(cmd)
+
+

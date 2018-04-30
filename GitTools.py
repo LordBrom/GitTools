@@ -40,18 +40,20 @@ class gitTestCommand(sublime_plugin.TextCommand, gitController):
 		# cmd = self.run_git_command(["git", "diff-files", "--name-status", "--ignore-submodules=all"], self.dir)
 		# show_output_panel(cmd)
 
+		gitHistory.add_history("this is a test")
 
-		path = sublime.active_window().active_view().file_name( )
-		self.debug_print(message = path,first = True, last = True)
-		otherSettings = sublime.load_settings( 'GitTools.sublime-settings' )
 
-		firstTest = otherSettings.get('commit_scope')
-		self.debug_print(message = firstTest, first = True, last = False)
+		# path = sublime.active_window().active_view().file_name( )
+		# self.debug_print(message = path,first = True, last = True)
+		# otherSettings = sublime.load_settings( 'GitTools.sublime-settings' )
 
-		window = sublime.active_window()
-		view = window.active_view()
-		settings = view.settings()
+		# firstTest = otherSettings.get('commit_scope')
+		# self.debug_print(message = firstTest, first = True, last = False)
 
-		is_composer_enabled = view.settings().get('commit_scope')
-		self.debug_print(message = is_composer_enabled, first = False, last = True)
+		# window = sublime.active_window()
+		# view = window.active_view()
+		# settings = view.settings()
+
+		# is_composer_enabled = view.settings().get('commit_scope')
+		# self.debug_print(message = is_composer_enabled, first = False, last = True)
 

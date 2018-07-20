@@ -15,6 +15,7 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 			if sublime.ok_cancel_dialog("The repo is out of date. Would you like to fetch the changes, and push again?"):
 				sublime.active_window().run_command("git_fetch")
 				sublime.active_window().run_command("git_push")
+				return
 			else:
 				show_output_panel(response)
 				return

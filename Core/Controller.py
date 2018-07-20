@@ -17,7 +17,7 @@ def show_output_panel(outputStr, reset = False):
 	window = sublime.active_window()
 	output = window.get_output_panel("Git")
 
-	output.run_command("insert", {"characters": outputStr })
+	output.run_command("append", {"characters": outputStr })
 
 	window.run_command("show_panel", {"panel": "output.Git"})
 

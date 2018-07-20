@@ -11,7 +11,8 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 
 		response = self.run_git_command(["git", "push", "origin"], self.dir)
 
-
+		if '(fetch first)' in response:
+			print('failed to push, fetch first')
 
 		show_output_panel(response)
 

@@ -6,6 +6,7 @@ from ..Core.Controller import *
 class gitPullCommand(sublime_plugin.TextCommand, gitController):
 	def run(self, edit):
 		print('pull')
+		test
 
 		self.dir = self.get_scoped_path('repo')
 

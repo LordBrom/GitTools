@@ -6,18 +6,19 @@ import functools
 import datetime
 import re
 
-from .Core.Controller      import *
-from .Core.SetStatusItems  import *
+from .Core.Controller          import *
+from .Core.SetStatusItems      import *
 
-from .Commands.gitCommit   import *
-from .Commands.gitPush     import *
-from .Commands.gitPull     import *
-from .Commands.gitDiff     import *
-from .Commands.gitLog      import *
-from .Commands.gitSetScope import *
+from .Commands.gitAdd          import *
+from .Commands.gitCommit       import *
+from .Commands.gitDiff         import *
+from .Commands.gitFetch        import *
+from .Commands.gitLog          import *
+from .Commands.gitPull         import *
+from .Commands.gitPush         import *
 from .Commands.gitRemoteBranch import *
-from .Commands.gitRepoStatus import *
-from .Commands.gitAdd import *
+from .Commands.gitRepoStatus   import *
+from .Commands.gitSetScope     import *
 
 
 def plugin_loaded():

@@ -12,7 +12,12 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		response = self.run_git_command(["git", "push", "origin"], self.dir)
 
 		if '(fetch first)' in response:
-			print('failed to push, fetch first')
+			if sublime.ok_cancel_dialog("The repo is out of date. Would you like to fetch the changes, and push again?"):
+				sublime.active_window().run_command("git_fetch")
+				sublime.active_window().run_command("git_push")
+			else:
+				show_output_panel(response)
+				return
 
 		show_output_panel(response)
 

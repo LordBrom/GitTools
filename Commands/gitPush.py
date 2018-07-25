@@ -8,11 +8,25 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		print('push')
 		# git.exe push --progress "origin" HomeCheckOut:NateHomeCheckout
 		self.dir = self.get_scoped_path('repo')
-		# branchData = self.run_git_command(["git", "status", "-sb"], self.dir)
-		# branchData = branchData.replace("##", "")
-		# branchData = branchData.replace("...", ":").strip()
-		# branchData = branchData.replace("origin/", "").strip()
-		# print(branchData)
-		cmd = self.run_git_command(["git", "push", "origin"], self.dir)
-		show_output_panel(cmd)
+
+		response = self.run_git_command(["git", "push", "origin"], self.dir)
+
+		if '(fetch first)' in response:
+			if sublime.ok_cancel_dialog("The repo is out of date. Would you like to fetch the changes, and push again?"):
+				sublime.active_window().run_command("git_fetch")
+				sublime.active_window().run_command("git_push")
+				return
+			else:
+				show_output_panel(response)
+				return
+		elif '(non-fast-forward)' in response:
+			if sublime.ok_cancel_dialog("The repo is out of date, and the new content needs to be merged in before pushing. Would you like to pull the changes, and push again?"):
+				sublime.active_window().run_command("git_pull")
+				sublime.active_window().run_command("git_push")
+				return
+			else:
+				show_output_panel(response)
+				return
+
+		show_output_panel(response)
 

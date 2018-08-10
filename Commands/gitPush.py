@@ -12,7 +12,7 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 		response = self.run_git_command(["git", "push", "origin"], self.dir)
 
 		if '(fetch first)' in response:
-			if sublime.ok_cancel_dialog("The repo is out of date. Would you like to fetch the changes, and push again?"):
+			if sublime.ok_cancel_dialog("The repo is out of date. Would you like to fetch the changes, and push again?", 'Fetch...'):
 				sublime.active_window().run_command("git_fetch")
 				sublime.active_window().run_command("git_push")
 				return
@@ -20,7 +20,7 @@ class gitPushCommand(sublime_plugin.TextCommand, gitController):
 				show_output_panel(response)
 				return
 		elif '(non-fast-forward)' in response:
-			if sublime.ok_cancel_dialog("The repo is out of date, and the new content needs to be merged in before pushing. Would you like to pull the changes, and push again?"):
+			if sublime.ok_cancel_dialog("The repo is out of date, and the new content needs to be merged in before pushing. Would you like to pull the changes, and push again?", 'Pull...'):
 				sublime.active_window().run_command("git_pull")
 				sublime.active_window().run_command("git_push")
 				return

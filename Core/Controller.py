@@ -71,12 +71,12 @@ class gitController():
 
 	def run_git_command(self, params = [], dir = '', stripResult = True):
 
-		self.debug_print(message = "Running command", first = True, last = False)
+		# self.debug_print(message = "Running command", first = True, last = False)
 		startupinfo = None
 		startupinfo = subprocess.STARTUPINFO()
 		startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
-		self.debug_print(message = params, first = False, last = False)
+		# self.debug_print(message = params, first = False, last = False)
 
 		try:
 			proc = subprocess.Popen(
@@ -95,8 +95,8 @@ class gitController():
 			return ""
 
 
-		self.debug_print(message = cmd, first = False, last = False)
-		self.debug_print(message = "Running Done", first = False, last = True)
+		# self.debug_print(message = cmd, first = False, last = False)
+		# self.debug_print(message = "Running Done", first = False, last = True)
 		return cmd[0].decode()
 
 	def debug_print(self, message = "", first = False, last = False):

@@ -77,8 +77,9 @@ class gitCommitCommand(sublime_plugin.TextCommand, gitController):
 
 
 	def do_commit(self, message):
-		self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)
+		cmd = self.run_git_command(["git", "commit", "-m", message, self.path], self.rootDir)
 		gitHistory.add_history(message)
+		show_output_panel(cmd)
 
 		if git_settings().get('Git.auto_push_after_commit', True):
 			sublime.active_window().run_command("git_push")

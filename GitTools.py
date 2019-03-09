@@ -31,6 +31,11 @@ class gitEventListener(sublime_plugin.EventListener, gitController):
 	def on_post_save_async(self, view):
 		git_set_status_items(self, view)
 
+		self.debug_print(message = "Save - async",first = True, last = True)
+		if git_settings().get("Git.commit_on_save", False):
+			sublime.active_window().run_command("git_commit")
+			print('auto commiting')
+
 
 class gitTestCommand(sublime_plugin.TextCommand, gitController):
 	def run(self, edit):
